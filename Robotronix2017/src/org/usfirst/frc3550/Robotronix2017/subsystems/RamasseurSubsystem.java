@@ -16,7 +16,7 @@ import org.usfirst.frc3550.Robotronix2017.RobotMap;
 import org.usfirst.frc3550.Robotronix2017.commands.*;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Solenoid;
-
+//import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -56,13 +56,13 @@ public class RamasseurSubsystem extends Subsystem {
   
     }
     public void Ramasser(){
-    	motorRamasseurGauche.set(0.5);
+    	motorRamasseurDroit.set(0.5);
     
     
     }  
     
     public void Eject(){
-    	motorRamasseurDroit.set(-0.5);
+    	motorRamasseurDroit.set(0.5);
     
     
     

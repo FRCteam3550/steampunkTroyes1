@@ -41,7 +41,7 @@ public class deplacementJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.deplacement.drive(Robot.oi.jPilote.getY(), Robot.oi.jPilote.getX());
+    	Robot.deplacement.drive(Robot.oi.getJPiloteYAxis(), Robot.oi.getJPilotXAxis());
     }
 
     // Make this return true when this Command no longer needs to run execute()
