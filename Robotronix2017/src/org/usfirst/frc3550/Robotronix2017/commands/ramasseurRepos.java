@@ -22,6 +22,8 @@ public class ramasseurRepos extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.ramasseur.Stop();
+    	Robot.ramasseur.Extract();
+    	Robot.ramasseur.Down();
     }
 
     // Make this return true when this Command no longer needs to run execute()

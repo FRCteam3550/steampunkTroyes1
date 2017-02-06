@@ -70,11 +70,11 @@ public class OI {
         //button1.whenPressed(new AspirerEngrenageCommand());
         button1.whileHeld(new AspirerEngrenageCommand());
         
-        //Button button2 = new JoystickButton(coPilote, 2);
-        //button2.whenPressed(new MonterRamasseurCommand());
+        Button button2 = new JoystickButton(jPilote, 2);
+        button2.whenPressed(new ArmUpCommand());
         
-        //Button button3 = new JoystickButton(coPilote, 3);
-        //button3.whenPressed(new DecendreRamasseurCommand());
+        Button button3 = new JoystickButton(jPilote, 3);
+        button3.whenPressed(new ArmDownCommand());
         
         Button button4 = new JoystickButton(jPilote, 4);
         //button4.whenPressed(new RejeterEngrenageCommand());
@@ -87,7 +87,19 @@ public class OI {
         Button button6 = new JoystickButton(jPilote, 6);
         //button6.whenPressed(new DescendreGrimpeur());
         button6.whileHeld(new DescendreGrimpeur());
+        
+        Button button7 = new JoystickButton(jPilote, 7);
+        button7.whenPressed(new ExtractPlaqueCommand());
+        
+        Button button8 = new JoystickButton(jPilote, 8);
+        button8.whenPressed(new RetractPlaqueCommand());
 
+        Button button9 = new JoystickButton(jPilote, 9);
+        button9.whenPressed(new ArmDownCommand());
+        
+        Button button10 = new JoystickButton(jPilote, 10);
+        button10.whenPressed(new ArmUpCommand());
+        
 
 
         // SmartDashboard Buttons
