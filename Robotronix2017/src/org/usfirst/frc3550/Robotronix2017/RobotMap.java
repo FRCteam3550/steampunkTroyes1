@@ -37,10 +37,10 @@ public class RobotMap {
     public static RobotDrive deplacementRobotDrive41;
     public static VictorSP ramasseurMoteurArriere;
     public static VictorSP ramasseurMoteurAvant;
-    public static DoubleSolenoid pistonPushDroit;
+    public static DoubleSolenoid pistonUpDownGear;
     public static DoubleSolenoid pistonPushGauche;
-    public static DoubleSolenoid pistonLiftDroit;
-    public static DoubleSolenoid pistonLiftGauche;
+    public static DoubleSolenoid pistonUpDownArm;
+    public static DoubleSolenoid pistonDropGear;
     public static VictorSP moteurGrimpeur;
    // public static VictorSP motorTest;
     
@@ -53,21 +53,21 @@ public class RobotMap {
     	ramasseurMoteurArriere = new VictorSP(1);
         LiveWindow.addActuator("Ramasseur", "ramasseurMoteurDroit", ramasseurMoteurArriere);
         
-        ramasseurMoteurAvant = new VictorSP(0);
+        ramasseurMoteurAvant = new VictorSP(2);
         LiveWindow.addActuator("Ramasseur", "ramasseurMoteurGauche", ramasseurMoteurAvant);
         
        // pistonPushDroit = new DoubleSolenoid(0, 0);
-        pistonPushDroit = new DoubleSolenoid(0, 1); //correction sur les ports
-        LiveWindow.addActuator("Piston", "pistonDroit", pistonPushDroit);
+        pistonUpDownGear = new DoubleSolenoid(1,0,1); //correction sur les ports
+        LiveWindow.addActuator("Piston", "pistonDroit", pistonUpDownGear);
         
-        pistonPushGauche = new DoubleSolenoid(2, 3);
-        LiveWindow.addActuator("Piston", "pistonGauche", pistonPushGauche);
+       // pistonPushGauche = new DoubleSolenoid(2, 3);
+        //LiveWindow.addActuator("Piston", "pistonGauche", pistonPushGauche);
         
-        pistonLiftDroit = new DoubleSolenoid(4, 5);
-        LiveWindow.addActuator("Piston", "pistonLiftDroit", pistonLiftDroit);
+        pistonUpDownArm = new DoubleSolenoid(1,2,3);
+        LiveWindow.addActuator("Piston", "pistonLiftDroit", pistonUpDownArm);
         
-        pistonLiftGauche = new DoubleSolenoid(6, 7);
-        LiveWindow.addActuator("Piston", "pistonLiftGauche", pistonLiftGauche);
+        pistonDropGear = new DoubleSolenoid(1,4,5);
+        LiveWindow.addActuator("Piston", "pistonLiftGauche", pistonDropGear);
         
          deplacementleftFrontMotor = new CANTalon(1);
         LiveWindow.addActuator("Deplacement", "leftFrontMotor", deplacementleftFrontMotor);
@@ -84,7 +84,7 @@ public class RobotMap {
         deplacementRobotDrive41 = new RobotDrive(deplacementleftFrontMotor, deplacementleftRearMotor,
               deplacementrightFrontMotor, deplacementrightRearMotor);
         
-        moteurGrimpeur = new VictorSP(2);
+        moteurGrimpeur = new VictorSP(0);
         LiveWindow.addActuator("Grimper", "moteurGrimper", moteurGrimpeur);
         
         

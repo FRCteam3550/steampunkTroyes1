@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -67,6 +68,13 @@ public class DeplacementSubsystem extends Subsystem {
 		robotDrive41.drive(0, 0);
 	}
 	
+	public void display(){
+	 SmartDashboard.putNumber("speedDeplacmentLeftFront", leftFrontMotor.get());
+	 SmartDashboard.putNumber("speedDeplacmentLeftRear",leftRearMotor.get());
+	 SmartDashboard.putNumber("speedDeplacmentRightFront", rightFrontMotor.get());
+	 SmartDashboard.putNumber("speedDeplacmentRightRear",rightRearMotor.get());
+	}
+
 	private void inverseMotors(boolean inverse) {
 		leftFrontMotor.setInverted(inverse);
 		leftRearMotor.setInverted(inverse);

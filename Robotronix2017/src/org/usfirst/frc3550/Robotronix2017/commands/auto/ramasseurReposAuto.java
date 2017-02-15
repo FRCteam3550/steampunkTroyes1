@@ -1,4 +1,4 @@
-package org.usfirst.frc3550.Robotronix2017.commands;
+package org.usfirst.frc3550.Robotronix2017.commands.auto;
 
 import org.usfirst.frc3550.Robotronix2017.Robot;
 
@@ -7,11 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ArmDownCommand extends Command {
+public class ramasseurReposAuto extends Command {
 
-    public ArmDownCommand() {
+    public ramasseurReposAuto() {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.ramasseur);
+        // eg. requires(chassis);
+    	requires(Robot.ramasseur);
     }
 
     // Called just before this Command runs the first time
@@ -20,6 +21,8 @@ public class ArmDownCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.ramasseur.Stop();
+    	Robot.ramasseur.pushGearDown();
     	Robot.ramasseur.pushArmDown();
     }
 
@@ -30,10 +33,12 @@ public class ArmDownCommand extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.ramasseur.Stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.ramasseur.Stop();
     }
 }

@@ -1,4 +1,4 @@
-package org.usfirst.frc3550.Robotronix2017.commands;
+package org.usfirst.frc3550.Robotronix2017.commands.auto;
 
 import org.usfirst.frc3550.Robotronix2017.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ArmDownCommand extends Command {
+public class ArmDownCommandAuto extends Command {
 
-    public ArmDownCommand() {
+    public ArmDownCommandAuto() {
         // Use requires() here to declare subsystem dependencies
          requires(Robot.ramasseur);
     }

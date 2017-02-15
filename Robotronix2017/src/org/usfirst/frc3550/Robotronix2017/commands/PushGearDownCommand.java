@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RetractPlaqueCommand extends Command {
+public class PushGearDownCommand extends Command {
 
-    public RetractPlaqueCommand() {
+    public PushGearDownCommand() {
         // Use requires() here to declare subsystem dependencies
          requires(Robot.ramasseur);
     }
@@ -20,7 +20,7 @@ public class RetractPlaqueCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ramasseur.Retract();
+    	Robot.ramasseur.pushGearDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()
