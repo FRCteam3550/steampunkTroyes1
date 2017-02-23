@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ramasseurRepos extends Command {
+public class ArcadeDriveInversedCommand extends Command {
 
-    public ramasseurRepos() {
+    public ArcadeDriveInversedCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.ramasseur);
+    	requires(Robot.deplacement);
     }
 
     // Called just before this Command runs the first time
@@ -21,9 +21,7 @@ public class ramasseurRepos extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ramasseur.Stop();
-    	Robot.ramasseur.pushGearDown();
-    	Robot.ramasseur.pushArmUp();
+    	Robot.deplacement.inverseDrive(Robot.oi.getJPiloteYAxis(), Robot.oi.getJPiloteXAxis());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,12 +31,12 @@ public class ramasseurRepos extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ramasseur.Stop();
+    	Robot.deplacement.stopBaseMobile();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.ramasseur.Stop();
+    	end();
     }
 }

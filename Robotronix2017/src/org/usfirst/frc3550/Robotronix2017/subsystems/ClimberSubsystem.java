@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class GrimpeurSubsystem extends Subsystem {
-	 private final VictorSP GrimpeurMoteur = RobotMap.moteurGrimpeur;
+public class ClimberSubsystem extends Subsystem {
+	 private final VictorSP climberMotor = RobotMap.moteurGrimpeur;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -18,18 +18,18 @@ public class GrimpeurSubsystem extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     } 
-    public void Stop(){
-    	GrimpeurMoteur.set(0);
+    public void stopClimber(){
+    	climberMotor.set(0);
      }
     
-    public void MonterGrimpeur(){
-    	GrimpeurMoteur.set(-0.9);
+    public void climbUp(){
+    	climberMotor.set(-1.0);
     
     
     }  
     
-    public void DescendreGrimpeur(){
-    	GrimpeurMoteur.set(0.9);
+    public void climbDown(){
+    	climberMotor.set(0.9);
     	
     }
 

@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DescendreGrimpeur extends Command {
+public class RestGearCollectorCommand extends Command {
 
-    public DescendreGrimpeur() {
+    public RestGearCollectorCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.grimpeur);
+    	requires(Robot.ramasseur);
     }
 
     // Called just before this Command runs the first time
@@ -21,17 +21,21 @@ public class DescendreGrimpeur extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.grimpeur.DescendreGrimpeur();
+    	Robot.ramasseur.stopCollecting();
+    	Robot.ramasseur.pushGearDown();
+    	Robot.ramasseur.pushArmUp();// desabled to test the off position
+    	Robot.ramasseur.coverGear();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	 return false;//((Robot.oi.jPilote.getRawButton(6))==false);
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.grimpeur.Stop();
+    	Robot.ramasseur.stopCollecting();
     }
 
     // Called when another command which requires one or more of the same

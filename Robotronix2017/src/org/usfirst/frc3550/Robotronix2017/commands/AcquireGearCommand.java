@@ -7,33 +7,44 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class PushGearUpCommand extends Command {
+public class AcquireGearCommand extends Command {
 
-    public PushGearUpCommand() {
+    public AcquireGearCommand() {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.ramasseur);
+        requires(Robot.ramasseur);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//
+    	Robot.ramasseur.pushArmDown();
+    	Robot.ramasseur.pushGearDown();
+    	//
+    	//setTimeout(2);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ramasseur.pushGearUp();
+    	//Robot.ramasseur.pushArmDown();
+    	//Robot.ramasseur.disableArm();
+    	Robot.ramasseur.getGear();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return false;//isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.ramasseur.stopCollecting();
+    	Robot.ramasseur.turnLedOff();
+    	//Robot.ramasseur.pushArmUp();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.ramasseur.stopCollecting();
     }
 }

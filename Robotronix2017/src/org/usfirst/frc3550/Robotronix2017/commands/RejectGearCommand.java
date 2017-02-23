@@ -1,4 +1,4 @@
-package org.usfirst.frc3550.Robotronix2017.commands.auto;
+package org.usfirst.frc3550.Robotronix2017.commands;
 
 import org.usfirst.frc3550.Robotronix2017.Robot;
 
@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RejeterEngrenageCommandAuto extends Command {
+public class RejectGearCommand extends Command {
 
-    public RejeterEngrenageCommandAuto() {
+    public RejectGearCommand() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.ramasseur);
     }

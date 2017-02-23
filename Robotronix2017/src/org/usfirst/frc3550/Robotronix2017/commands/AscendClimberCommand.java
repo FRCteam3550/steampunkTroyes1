@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MonterGrimpeur extends Command {
+public class AscendClimberCommand extends Command {
 
-    public MonterGrimpeur() {
+    public AscendClimberCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.grimpeur);
@@ -21,7 +21,7 @@ public class MonterGrimpeur extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.grimpeur.MonterGrimpeur();
+    	Robot.grimpeur.climbUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +31,7 @@ public class MonterGrimpeur extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.grimpeur.Stop();
+    	Robot.grimpeur.stopClimber();
     }
 
     // Called when another command which requires one or more of the same

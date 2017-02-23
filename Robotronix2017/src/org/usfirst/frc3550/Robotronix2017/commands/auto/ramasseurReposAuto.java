@@ -21,7 +21,7 @@ public class ramasseurReposAuto extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ramasseur.Stop();
+    	Robot.ramasseur.stopCollecting();
     	Robot.ramasseur.pushGearDown();
     	Robot.ramasseur.pushArmDown();
     }
@@ -33,12 +33,12 @@ public class ramasseurReposAuto extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ramasseur.Stop();
+    	Robot.ramasseur.stopCollecting();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.ramasseur.Stop();
+    	end();
     }
 }

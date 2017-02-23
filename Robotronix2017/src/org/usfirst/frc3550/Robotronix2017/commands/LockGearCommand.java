@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DecendreRamasseurCommand extends Command {
+public class LockGearCommand extends Command {
 
-    public DecendreRamasseurCommand() {
+    public LockGearCommand() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+         requires(Robot.ramasseur);
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +20,8 @@ public class DecendreRamasseurCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.ramasseur.pushGearUp();
+    	Robot.ramasseur.coverGear();
+    	Robot.ramasseur.turnLedOff();
     }
 
     // Make this return true when this Command no longer needs to run execute()
