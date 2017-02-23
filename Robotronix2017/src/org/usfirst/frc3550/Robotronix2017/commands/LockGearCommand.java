@@ -14,7 +14,7 @@ public class LockGearCommand extends Command {
          requires(Robot.ramasseur);
     }
 
-    // Called just before this Command runs the first time
+    // Called just before this Command runs the very first time
     protected void initialize() {
     }
 

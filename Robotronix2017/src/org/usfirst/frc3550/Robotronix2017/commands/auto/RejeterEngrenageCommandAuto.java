@@ -11,6 +11,7 @@ public class RejeterEngrenageCommandAuto extends Command {
 
     public RejeterEngrenageCommandAuto() {
         // Use requires() here to declare subsystem dependencies
+    	//
         requires(Robot.ramasseur);
     }
 

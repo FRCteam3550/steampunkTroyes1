@@ -19,7 +19,7 @@ public class AcquireGearCommand extends Command {
     	//
     	Robot.ramasseur.pushArmDown();
     	Robot.ramasseur.pushGearDown();
-    	//
+    	
     	//setTimeout(2);
     }
 

@@ -11,6 +11,7 @@ public class RetractPlaqueCommandAuto extends Command {
 
     public RetractPlaqueCommandAuto() {
         // Use requires() here to declare subsystem dependencies
+    	//
          requires(Robot.ramasseur);
     }
 

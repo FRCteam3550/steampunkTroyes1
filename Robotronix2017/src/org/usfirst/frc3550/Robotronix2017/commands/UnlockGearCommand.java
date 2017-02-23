@@ -11,6 +11,7 @@ public class UnlockGearCommand extends Command {
 
     public UnlockGearCommand() {
         // Use requires() here to declare subsystem dependencies
+    	//
         requires(Robot.ramasseur);
     }
 

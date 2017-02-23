@@ -11,7 +11,7 @@ public class RestGearCollectorCommand extends Command {
 
     public RestGearCollectorCommand() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        //  requires(chassis);
     	requires(Robot.ramasseur);
     }
 

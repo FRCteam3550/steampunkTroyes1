@@ -11,6 +11,7 @@ public class ArmUpCommandAuto extends Command {
 
     public ArmUpCommandAuto() {
         // Use requires() here to declare subsystem dependencies
+    	//
          requires(Robot.ramasseur);
     }
 

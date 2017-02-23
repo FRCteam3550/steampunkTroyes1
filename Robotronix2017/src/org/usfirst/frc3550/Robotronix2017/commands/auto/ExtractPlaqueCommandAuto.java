@@ -11,6 +11,7 @@ public class ExtractPlaqueCommandAuto extends Command {
 
     public ExtractPlaqueCommandAuto() {
         // Use requires() here to declare subsystem dependencies
+    	//
          requires(Robot.ramasseur);
     }
 

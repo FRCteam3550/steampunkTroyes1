@@ -11,6 +11,7 @@ public class DecendreRamasseurCommandAuto extends Command {
 
     public DecendreRamasseurCommandAuto() {
         // Use requires() here to declare subsystem dependencies
+    	//
         // eg. requires(chassis);
     }
 

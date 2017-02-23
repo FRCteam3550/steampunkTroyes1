@@ -11,7 +11,7 @@ public class DescendClimberCommand extends Command {
 
     public DescendClimberCommand() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        // . requires(chassis);
     	requires(Robot.grimpeur);
     }
 

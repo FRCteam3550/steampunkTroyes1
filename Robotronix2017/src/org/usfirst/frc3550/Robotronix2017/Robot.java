@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
     public static BaseMobileSubsystem deplacement;
     public static ClimberSubsystem grimpeur;
     public static Compressor compresseur;
-   // public static LedsSubsystem       leds;
+   
     
     
     SendableChooser autoSelecteur;

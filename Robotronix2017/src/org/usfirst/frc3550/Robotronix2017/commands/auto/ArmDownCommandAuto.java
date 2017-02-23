@@ -11,6 +11,7 @@ public class ArmDownCommandAuto extends Command {
 
     public ArmDownCommandAuto() {
         // Use requires() here to declare subsystem dependencies
+    	//
          requires(Robot.ramasseur);
     }
 

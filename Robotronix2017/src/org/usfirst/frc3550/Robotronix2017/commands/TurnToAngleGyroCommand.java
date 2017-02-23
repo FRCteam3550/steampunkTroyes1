@@ -33,7 +33,7 @@ public class TurnToAngleGyroCommand extends Command {
 
     public TurnToAngleGyroCommand(double gyroSetpoint) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        // eg.. requires(chassis);
     	requires(Robot.deplacement);
     	//this.distance        = distance;
     	//this.maxSpeed        = maxSpeed;

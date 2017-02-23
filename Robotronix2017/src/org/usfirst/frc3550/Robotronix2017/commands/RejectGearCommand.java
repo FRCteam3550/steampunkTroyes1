@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RejectGearCommand extends Command {
 
     public RejectGearCommand() {
-        // Use requires() here to declare subsystem dependencies
+        // Use requires() here to declare subsystem  dependencies
         requires(Robot.ramasseur);
     }
 

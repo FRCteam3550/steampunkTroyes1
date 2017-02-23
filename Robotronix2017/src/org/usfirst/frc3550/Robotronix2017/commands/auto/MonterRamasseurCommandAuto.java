@@ -11,6 +11,7 @@ public class MonterRamasseurCommandAuto extends Command {
 
     public MonterRamasseurCommandAuto() {
         // Use requires() here to declare subsystem dependencies
+    	//
         requires(Robot.ramasseur);
     }
 

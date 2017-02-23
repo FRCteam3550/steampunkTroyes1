@@ -11,7 +11,7 @@ public class LowerGearCollectorCommand extends Command {
 
     public LowerGearCollectorCommand() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        //  requires(chassis);
     	requires(Robot.ramasseur);
     }
 

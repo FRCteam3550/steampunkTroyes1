@@ -11,6 +11,7 @@ public class AspirerEngrenageCommandAuto extends Command {
 
     public AspirerEngrenageCommandAuto() {
         // Use requires() here to declare subsystem dependencies
+    	//
         requires(Robot.ramasseur);
     }
 
