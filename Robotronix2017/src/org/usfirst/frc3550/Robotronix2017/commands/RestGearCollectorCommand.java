@@ -24,7 +24,7 @@ public class RestGearCollectorCommand extends Command {
     	Robot.ramasseur.stopCollecting();
     	Robot.ramasseur.pushGearDown();
     	Robot.ramasseur.pushArmUp();// desabled to test the off position
-    	Robot.ramasseur.coverGear();
+    	Robot.ramasseur.uncoverGear();
     	
     }
 

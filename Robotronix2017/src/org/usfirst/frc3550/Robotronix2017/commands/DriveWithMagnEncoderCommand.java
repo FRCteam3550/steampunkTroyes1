@@ -75,6 +75,7 @@ public class DriveWithMagnEncoderCommand extends Command {
     	/* Position mode - button just pressed */
     	//targetPositionRotations = 3.0; /* 2 Rotations in either direction */
     	Robot.deplacement.getLeftRearMotor().enableControl();
+    	//Robot.deplacement.getLeftRearMotor().getPosition();
     	Robot.deplacement.getLeftRearMotor().changeControlMode(TalonControlMode.Position);
     	Robot.deplacement.getLeftRearMotor().set(targetPositionRotations); /* 5 rotations in either direction */
     	_sb.append("\terrNative:");

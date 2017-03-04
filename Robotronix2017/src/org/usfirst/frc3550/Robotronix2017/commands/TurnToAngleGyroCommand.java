@@ -23,7 +23,7 @@ public class TurnToAngleGyroCommand extends Command {
 	
 	
 	
-	private static final double Kp_gyro    = (0.109)*0.45; //other choices are: (0.10)*0.5 or (0.11)*0.5
+	private static final double Kp_gyro    = (0.11)*0.45; //other choices are: (0.10)*0.5 or (0.11)*0.5
 	private static final double Ki_gyro    = 0.000000; //0.0001 ok before ziegler-Nicols
 	private static final double Kd_gyro    = 0.000000;
 
@@ -69,10 +69,10 @@ public class TurnToAngleGyroCommand extends Command {
 				
 				rotateValue = output;
 				
-				if(rotateValue > 0.8) 
-					rotateValue = 0.8;
-				if(rotateValue < -0.8)
-					rotateValue = -0.8;
+				if(rotateValue > 0.5) 
+					rotateValue = 0.5;
+				if(rotateValue < -0.5)
+					rotateValue = -0.5;
 					
 				SmartDashboard.putNumber("gyroAutoAngleinside", rotateValue);// to delete after tests
 				SmartDashboard.putNumber("Errorinside", (gyroSetpoint-rotateValue));// to delete after tests
@@ -86,7 +86,7 @@ public class TurnToAngleGyroCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	//gyroPID.reset();
+    	Robot.deplacement.clearGyroAngle();
     	gyroPID.setSetpoint(gyroSetpoint);
     	gyroPID.enable();
     	setTimeout(2);
@@ -102,12 +102,14 @@ public class TurnToAngleGyroCommand extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return gyroPID.onTarget() || isTimedOut();
+    	//return gyroPID.onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	gyroPID.reset();
-    	gyroPID.reset();
+    	//gyroPID.reset();
+    	//gyroPID.reset();
+    	Robot.deplacement.clearGyroAngle();
     	gyroPID.disable();
     }
 

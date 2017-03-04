@@ -100,7 +100,6 @@ public class RobotMap {
         deplacementRobotDrive41.setExpiration(0.1);
         deplacementRobotDrive41.setSensitivity(0.5);
         deplacementRobotDrive41.setMaxOutput(1.0);
-        
         gyro = new AnalogGyro(1); // change from analog 0 to analog 1
 
 
