@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
     public static GearCollectorSubsystem ramasseur;
     public static BaseMobileSubsystem deplacement;
     public static ClimberSubsystem grimpeur;
-    public static Compressor compresseur;
+    //public static Compressor compresseur;
    
     
     
@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot {
         deplacement = new BaseMobileSubsystem();
         grimpeur = new ClimberSubsystem();
         //leds = new LedsSubsystem();
-        compresseur = new Compressor(1);
+       // compresseur = new Compressor(1);
        // CameraServer.getInstance().startAutomaticCapture();
         //deplacement.clearLeftRearEncoder();
         

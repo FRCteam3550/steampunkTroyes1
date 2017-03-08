@@ -118,6 +118,7 @@ public class BaseMobileSubsystem extends Subsystem {
 	 SmartDashboard.putNumber("speedDeplacmentLeftRear",leftRearMotor.get());
 	 SmartDashboard.putNumber("speedDeplacmentRightFront", rightFrontMotor.get());
 	 SmartDashboard.putNumber("speedDeplacmentRightRear",rightRearMotor.get());
+	 SmartDashboard.putNumber("EncoderPosition", getPositionLeftRearMotor());
 	}
 
 	private void inverseMotors(boolean inverse) {

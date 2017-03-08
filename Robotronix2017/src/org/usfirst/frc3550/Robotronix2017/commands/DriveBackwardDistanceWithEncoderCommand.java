@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DriveNewDistanceWithEncoderCommand extends Command {
+public class DriveBackwardDistanceWithEncoderCommand extends Command {
 	
 	
 	//private PIDController encoderPID;
@@ -34,14 +34,14 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
 	//private static final double Ki_gyro = 0.0058; // 0.01
 	//private static final double Kd_gyro = 0.0001;
 
-    public DriveNewDistanceWithEncoderCommand(double encoderSetpoint) {
+    public DriveBackwardDistanceWithEncoderCommand(double encoderSetpoint) {
         // Use requires() here to declare subsystem dependencies
         // eg.. requires(chassis);
     	requires(Robot.deplacement);
     	//this.distance        = distance;
     	//this.maxSpeed        = maxSpeed;
     	//this.encoderSetpoint    = encoderSetpoint*4096;//One Turn corresponds to 4096 position   	
-    	this.encoderSetpoint    = (encoderSetpoint/((15.2)*Math.PI))*4096;//One Turn corresponds to 4096 position   	
+    	this.encoderSetpoint    = Math.abs((encoderSetpoint/((15.2)*Math.PI))*4096);//One Turn corresponds to 4096 position   	
 
     }
 
@@ -58,7 +58,7 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
 
    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	 error = encoderSetpoint - Robot.deplacement.getPositionLeftRearMotor();
+    	 error = Math.abs(encoderSetpoint - Robot.deplacement.getPositionLeftRearMotor());
     	 SmartDashboard.putNumber("Encoder_actualPosition", Robot.deplacement.getPositionLeftRearMotor());// to delete after tests
     	 SmartDashboard.putNumber("Error", error);// to delete after tests
     	 SmartDashboard.putNumber("encoderSetpoint", encoderSetpoint);// to delete after tests
@@ -68,10 +68,11 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
 		} else {
 			Robot.deplacement.driveTank(driveForwardSpeed * Kp_encoder * error, driveForwardSpeed * Kp_encoder * error);
 		}*/
-    	 if(error < encoderSetpoint*0.2) {
-    		 Robot.deplacement.driveTank(driveForwardSpeed, ((1+0.1)*(driveForwardSpeed)));
+    	 if(error > encoderSetpoint*0.8) {
+    		// Robot.deplacement.driveTank(driveForwardSpeed, ((1+0.1)*(driveForwardSpeed)));
+    		 Robot.deplacement.inverseTankDrive((1+0.1)*driveForwardSpeed, ((1+0.0)*(driveForwardSpeed)));
     	 } else {
-    		 Robot.deplacement.driveTank(driveForwardSpeed*0.5, ((1+0.1)*(driveForwardSpeed)*0.5));
+    		 Robot.deplacement.inverseTankDrive((1+0.1)*driveForwardSpeed*0.5, ((1+0.0)*(driveForwardSpeed)*0.5));
     	 }
     	 
     	 

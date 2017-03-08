@@ -13,6 +13,8 @@ package org.usfirst.frc3550.Robotronix2017;
 
 
 import org.usfirst.frc3550.Robotronix2017.commands.*;
+import org.usfirst.frc3550.Robotronix2017.commands.auto.Auto1;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -92,12 +94,17 @@ public class OI {
 		//buttonSlowTankDrive.whenPressed(new RbtxSlowTankDriveCommand()); 
 		
 		Button Auto1 = new JoystickButton(jPilote, 6);//Button6
-		Auto1.whenPressed(new ForwardWithEncoderTurnCommand(-3, 90));
+		//Auto1.whenPressed(new DriveToTargetWithEncoderCommand(2));
+		//Auto1.whenPressed(new DriveNewDistanceWithEncoderCommand(100));
+		Auto1.whenPressed(new DriveBackwardDistanceWithEncoderCommand(200));
 		
 		Button Auto2 = new JoystickButton(jPilote, 7);
 		Auto2.whenPressed(new ForwardPickingUpCommand(-3));
+		
+		Button Auto3 = new JoystickButton(jPilote, 10);
+		Auto2.whenPressed(new Auto1 (1));
         
-		Button Auto3 = new JoystickButton(jPilote, 4);
+		Button Auto4 = new JoystickButton(jPilote, 4);
 		Auto3.whenPressed(new UTurnCommand(90, -3));
 		
         Button AcquireGear = new JoystickButton(coPilote, 1);
