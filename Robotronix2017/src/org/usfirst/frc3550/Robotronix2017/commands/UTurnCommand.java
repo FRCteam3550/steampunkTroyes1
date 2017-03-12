@@ -1,5 +1,7 @@
 package org.usfirst.frc3550.Robotronix2017.commands;
 
+import org.usfirst.frc3550.Robotronix2017.commands.auto.AcquireGearCommandAuto;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -10,7 +12,7 @@ public class UTurnCommand extends CommandGroup {
 	private double distance2;
 	private double angle1;
 	private double angle2;
-    public UTurnCommand(double angle1, double distance1) {
+    public UTurnCommand(double distance1, double angle1, double distance2) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -31,13 +33,18 @@ public class UTurnCommand extends CommandGroup {
     	this.distance2=distance2;
     	this.angle1=angle1;
     	this.angle2=angle2;
-    	addParallel(new AcquireGearCommand());
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance1));
+    	//addParallel(new AcquireGearCommand());
+    	addParallel(new AcquireGearCommandAuto(2));
+    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance1));
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));
     	addSequential(new TurnToAngleGyroCommand(angle1));
     	//addSequential(new TurnToAngleGyroCommand(angle2));
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance1));
+    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance1));
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance2));
     	addSequential(new TurnToAngleGyroCommand(angle1));
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance1));
+    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance1));
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));
+    	//addParallel(new AcquireGearCommand());
     	
     	//addSequential(new DriveNewDistanceWithEncoderCommand(0));
     	//addSequential(new DriveNewDistanceWithEncoderCommand(distance));

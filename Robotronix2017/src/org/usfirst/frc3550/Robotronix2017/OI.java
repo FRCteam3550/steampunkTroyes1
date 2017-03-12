@@ -13,7 +13,8 @@ package org.usfirst.frc3550.Robotronix2017;
 
 
 import org.usfirst.frc3550.Robotronix2017.commands.*;
-import org.usfirst.frc3550.Robotronix2017.commands.auto.Auto1;
+import org.usfirst.frc3550.Robotronix2017.commands.auto.Auto4;
+import org.usfirst.frc3550.Robotronix2017.commands.auto.AutoSimpleForward;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -101,11 +102,11 @@ public class OI {
 		Button Auto2 = new JoystickButton(jPilote, 7);
 		Auto2.whenPressed(new ForwardPickingUpCommand(-3));
 		
-		Button Auto3 = new JoystickButton(jPilote, 10);
-		Auto2.whenPressed(new Auto1 (1));
+		Button Auto4 = new JoystickButton(jPilote, 10);
+		Auto2.whenPressed(new Auto4 (30,200,100));
         
-		Button Auto4 = new JoystickButton(jPilote, 4);
-		Auto3.whenPressed(new UTurnCommand(90, -3));
+		Button Auto3 = new JoystickButton(jPilote, 4);
+		Auto3.whenPressed(new AutoSimpleForward(-100));
 		
         Button AcquireGear = new JoystickButton(coPilote, 1);
         //button1.whenPressed(new AspirerEngrenageCommand());
@@ -142,7 +143,7 @@ public class OI {
         button10.whenPressed(new UnlockGearCommand());
         
         Button button11 = new JoystickButton(coPilote, 11);
-        button11.whenPressed(new TurnToAngleGyroCommand(90));//input parameter: angle to turn in degrees
+        button11.whenPressed(new TurnToAngleGyroCommand(-90));//input parameter: angle to turn in degrees
         
         Button button12 = new JoystickButton(coPilote, 12);
         button12.whenPressed(new DriveNewDistanceWithEncoderCommand(-3));

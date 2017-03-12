@@ -23,9 +23,9 @@ public class TurnToAngleGyroCommand extends Command {
 	
 	
 	
-	private static final double Kp_gyro    = (0.11)*0.45; //other choices are: (0.10)*0.5 or (0.11)*0.5
-	private static final double Ki_gyro    = 0.000000; //0.0001 ok before ziegler-Nicols
-	private static final double Kd_gyro    = 0.000000;
+	private static final double Kp_gyro    = 0.11*1; //other choices are: (0.10)*0.5 or (0.11)*0.5
+	private static final double Ki_gyro    =  0; //0.0001 ok before ziegler-Nicols
+	private static final double Kd_gyro    = 0;
 
 	//private static final double Kp_gyro = 1.98; // 2.35 3
 	//private static final double Ki_gyro = 0.0058; // 0.01
@@ -101,6 +101,7 @@ public class TurnToAngleGyroCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	//return gyroPID.onTarget();
     	return gyroPID.onTarget() || isTimedOut();
     	//return gyroPID.onTarget();
     }

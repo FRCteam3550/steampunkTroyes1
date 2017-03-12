@@ -2,6 +2,8 @@ package org.usfirst.frc3550.Robotronix2017.commands;
 
 import org.usfirst.frc3550.Robotronix2017.Robot;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -40,20 +42,24 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
     	requires(Robot.deplacement);
     	//this.distance        = distance;
     	//this.maxSpeed        = maxSpeed;
-    	//this.encoderSetpoint    = encoderSetpoint*4096;//One Turn corresponds to 4096 position   	
+    	//this.encoderSetpoint    = encoderSetpoint*4096;//One Turn corresponds to 4096 position  
+    	
     	this.encoderSetpoint    = (encoderSetpoint/((15.2)*Math.PI))*4096;//One Turn corresponds to 4096 position   	
-
+        //Robot.deplacement.clearLeftRearEncoder();
+       
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	//encoderPID.enable();
+    	Robot.deplacement.setLeftRearMotorEncoderMode();
     	Robot.deplacement.clearLeftRearEncoder();
+    	
     	SmartDashboard.putNumber("EncoderTargetPosition", encoderSetpoint);
     	//gyroPID.reset();
     	//encoderPID.setSetpoint(encoderSetpoint);
-    	setTimeout(2);
-    	
+    	setTimeout(8);
+    	 SmartDashboard.putNumber("EncoderInitialPositioniS", Robot.deplacement.getPositionLeftRearMotor());
     }
 
    // Called repeatedly when this Command is scheduled to run
@@ -62,13 +68,14 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
     	 SmartDashboard.putNumber("Encoder_actualPosition", Robot.deplacement.getPositionLeftRearMotor());// to delete after tests
     	 SmartDashboard.putNumber("Error", error);// to delete after tests
     	 SmartDashboard.putNumber("encoderSetpoint", encoderSetpoint);// to delete after tests
+    	 SmartDashboard.putString("Inside ","autonomous");// to delete after tests
     	 /*
 		if (driveForwardSpeed *Kp_encoder * error >= driveForwardSpeed) {
 			Robot.deplacement.driveTank(driveForwardSpeed, ((1+0.1)*(driveForwardSpeed)));
 		} else {
 			Robot.deplacement.driveTank(driveForwardSpeed * Kp_encoder * error, driveForwardSpeed * Kp_encoder * error);
 		}*/
-    	 if(error < encoderSetpoint*0.2) {
+    	 if(error < encoderSetpoint*0.2) { //Change equality sign from less than to more than
     		 Robot.deplacement.driveTank(driveForwardSpeed, ((1+0.1)*(driveForwardSpeed)));
     	 } else {
     		 Robot.deplacement.driveTank(driveForwardSpeed*0.5, ((1+0.1)*(driveForwardSpeed)*0.5));
@@ -86,8 +93,8 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
     	//return encoderPID.onTarget() || isTimedOut();
     	//return encoderPID.onTarget();
     	//
-    	return (Math.abs(error) <= kTolerance);
-    	///return (Math.abs(error) <= kTolerance) || isTimedOut();
+    	//return (Math.abs(error) <= kTolerance);
+    	return (Math.abs(error) <= kTolerance) || isTimedOut();
     }
 
     // Called once after isFinished returns true
@@ -95,8 +102,9 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
     	//encoderPID.reset();
     	//encoderPID.reset();
     	//encoderPID.disable();
-    	Robot.deplacement.clearLeftRearEncoder();
-    SmartDashboard.putNumber("Encoder_AfterDistancePID", Robot.deplacement.getPositionLeftRearMotor());
+    	error =  Robot.deplacement.getPositionLeftRearMotor();
+    	Robot.deplacement.getRightRearMotor().setPosition(0);
+         SmartDashboard.putNumber("Encoder_AfterDistancePID", Robot.deplacement.getPositionLeftRearMotor());
     	//this.encoderSetpoint = 0;
     }
 

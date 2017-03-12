@@ -11,7 +11,7 @@ public class Auto4 extends CommandGroup {
 	private double distance3;
 	private double angle1;
 	private double angle2;
-    public Auto4(double angle1, double distance1,double distance2,double distance3) {
+    public Auto4(double angle1, double distance1, double distance2) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -34,15 +34,14 @@ public class Auto4 extends CommandGroup {
     	this.angle1=angle1;
     	this.angle2=angle2;
     	
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
-    	
-    	addSequential(new TurnToAngleGyroCommand(angle1));//Turn 90 degrees left/right
-    	
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance2));//moves forward
-    	
-    	addSequential(new UnlockGearCommand());//unlocks the gear 
-    	
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance3));//reverse
+    	///addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));
+    	//addSequential(new TurnToAngleGyroCommand(angle1));//Turn 90 degrees left/right
+    	///addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward
+    	//addSequential(new SimpleDistanceWithEncoderCommand(distance1));
+    	//addSequential(new UnlockGearCommand());//unlocks the gear 
+    	addSequential(new DriveBackwardDistanceWithEncoderCommand(distance2));//reverse
+    	///addSequential(new SimpleDistanceWithEncoderCommand(distance1));
     	
     }
 }

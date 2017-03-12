@@ -18,10 +18,10 @@ public class DriveBackwardDistanceWithEncoderCommand extends Command {
 	//private PIDController encoderPID;
 	private double encoderSetpoint = 0;
 	private double PositionValue=0;
-	private double driveForwardSpeed = -0.6;
-	private double error;
+	private double driveBackwardSpeed = 0.6; //Must be positive in order for the robot to move in backward direction
+	private double error = 0;
 	private final double TOLERANCE = .1;
-	private final double kTolerance = 50;
+	private final double kTolerance = 100;
 	
 	private double firstPart = 0.8;
 	private double secondPart = 0.2;
@@ -41,38 +41,46 @@ public class DriveBackwardDistanceWithEncoderCommand extends Command {
     	//this.distance        = distance;
     	//this.maxSpeed        = maxSpeed;
     	//this.encoderSetpoint    = encoderSetpoint*4096;//One Turn corresponds to 4096 position   	
-    	this.encoderSetpoint    = Math.abs((encoderSetpoint/((15.2)*Math.PI))*4096);//One Turn corresponds to 4096 position   	
-
+    	this.encoderSetpoint    = ((encoderSetpoint/((15.2)*Math.PI))*4096);//One Turn corresponds to 4096 position   	
+        Robot.deplacement.clearLeftRearEncoder();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	//encoderPID.enable();
-    	Robot.deplacement.clearLeftRearEncoder();
+    	
     	SmartDashboard.putNumber("EncoderTargetPosition", encoderSetpoint);
     	//gyroPID.reset();
     	//encoderPID.setSetpoint(encoderSetpoint);
-    	setTimeout(2);
+    	setTimeout(4);
     	
     }
 
    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	 error = Math.abs(encoderSetpoint - Robot.deplacement.getPositionLeftRearMotor());
-    	 SmartDashboard.putNumber("Encoder_actualPosition", Robot.deplacement.getPositionLeftRearMotor());// to delete after tests
-    	 SmartDashboard.putNumber("Error", error);// to delete after tests
-    	 SmartDashboard.putNumber("encoderSetpoint", encoderSetpoint);// to delete after tests
+    	
+    	 SmartDashboard.putNumber("EncoderPositionBackward", Robot.deplacement.getPositionLeftRearMotor());
+    	 this.error = Math.abs(encoderSetpoint - Robot.deplacement.getPositionLeftRearMotor());
+    	 // to delete after tests
+    	 SmartDashboard.putNumber("ErrorBackward", error);// to delete aftesr tests
+    	 SmartDashboard.putNumber("encoderSetpointBackward", encoderSetpoint);// to delete after tests
     	 /*
 		if (driveForwardSpeed *Kp_encoder * error >= driveForwardSpeed) {
 			Robot.deplacement.driveTank(driveForwardSpeed, ((1+0.1)*(driveForwardSpeed)));
 		} else {
 			Robot.deplacement.driveTank(driveForwardSpeed * Kp_encoder * error, driveForwardSpeed * Kp_encoder * error);
 		}*/
-    	 if(error > encoderSetpoint*0.8) {
+    	 if(Math.abs(Robot.deplacement.getPositionLeftRearMotor()) > Math.abs(encoderSetpoint)){
+    		 Robot.deplacement.inverseTankDrive(0,0);
+    	 }
+    	 if(error > Math.abs(encoderSetpoint*0.2)) { //Change equality sign from greater then to less than
     		// Robot.deplacement.driveTank(driveForwardSpeed, ((1+0.1)*(driveForwardSpeed)));
-    		 Robot.deplacement.inverseTankDrive((1+0.1)*driveForwardSpeed, ((1+0.0)*(driveForwardSpeed)));
+    		 SmartDashboard.putString("BackwardSuperieurBound", "yes");// to delete aftesr tests
+    		// Robot.deplacement.inverseTankDrive((1+0.1)*driveForwardSpeed, ((1+0.0)*(driveForwardSpeed)));
+    		 Robot.deplacement.drive(driveBackwardSpeed, 0);
     	 } else {
-    		 Robot.deplacement.inverseTankDrive((1+0.1)*driveForwardSpeed*0.5, ((1+0.0)*(driveForwardSpeed)*0.5));
+    		// Robot.deplacement.inverseTankDrive((1+0.1)*driveForwardSpeed*0.5, ((1+0.0)*(driveForwardSpeed)*0.5));
+    		 Robot.deplacement.drive(driveBackwardSpeed*0.25, 0.38);
     	 }
     	 
     	 
@@ -86,8 +94,9 @@ public class DriveBackwardDistanceWithEncoderCommand extends Command {
     protected boolean isFinished() {
     	//return encoderPID.onTarget() || isTimedOut();
     	//return encoderPID.onTarget();
-    	//
-    	return (Math.abs(error) <= kTolerance);
+    	//r
+    	SmartDashboard.putNumber("error in isFinished Backward", Math.abs(error));
+    	return (Math.abs(error) <= kTolerance)|| isTimedOut();
     	///return (Math.abs(error) <= kTolerance) || isTimedOut();
     }
 
@@ -97,8 +106,10 @@ public class DriveBackwardDistanceWithEncoderCommand extends Command {
     	//encoderPID.reset();
     	//encoderPID.disable();
     	Robot.deplacement.clearLeftRearEncoder();
-    SmartDashboard.putNumber("Encoder_AfterDistancePID", Robot.deplacement.getPositionLeftRearMotor());
-    	//this.encoderSetpoint = 0;
+    	Robot.deplacement.clearLeftRearEncoder();
+  //  SmartDashboard.putNumber("Encoder_AfterDistancePID", Robot.deplacement.getPositionLeftRearMotor());
+    	///this.encoderSetpoint = 0;
+    	//this.error = 0;
     }
 
     // Called when another command which requires one or more of the same

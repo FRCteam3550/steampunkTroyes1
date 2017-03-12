@@ -11,7 +11,15 @@ public class Auto2 extends CommandGroup {
 	private double distance3;
 	private double angle1;
 	private double angle2;
-    public Auto2(double angle1, double distance1,double distance2,double distance3) {
+	
+	/**
+	 * drive method provides a way to explicitly choose the joystick or gamePad axis in order to operate the robot
+	 * 
+	 * @param moveValue The speed that the robot should drive in the y direction in range [-1.0..1.0]
+	 * @param rotateValue The rate of rotation for the robot that is dependent of the translation. [-1.0..1.0]
+	 */
+	
+    public Auto2(double distance1, double angle1,double distance2,double angle2, double distance3) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -34,10 +42,13 @@ public class Auto2 extends CommandGroup {
     	this.angle1=angle1;
     	this.angle2=angle2;
     	
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
+    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance1)); 
     	addSequential(new TurnToAngleGyroCommand(angle1));
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance2));
-    	addSequential(new TurnToAngleGyroCommand(angle1));
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance2));
+    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance2));
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance2));
+    	addSequential(new TurnToAngleGyroCommand(angle2));
+    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance2));
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance3));
     }
 }

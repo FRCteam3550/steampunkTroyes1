@@ -40,7 +40,7 @@ public class Auto6 extends CommandGroup {
     	addSequential(new TurnToAngleGyroCommand(angle1));//Turn 90 degrees left/right 
     	addSequential(new DriveNewDistanceWithEncoderCommand(distance3));//move forward
     	addSequential(new UnlockGearCommand());//unlocks gear
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance3));//reverse
+    	addSequential(new DriveBackwardDistanceWithEncoderCommand(distance3));//reverse
     	
     }
 }

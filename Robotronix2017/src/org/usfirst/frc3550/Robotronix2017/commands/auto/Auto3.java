@@ -11,7 +11,7 @@ public class Auto3 extends CommandGroup {
 	private double distance3;
 	private double angle1;
 	private double angle2;
-    public Auto3(double angle1, double distance1,double distance2,double distance3) {
+    public Auto3(double distance1,double distance2) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -34,9 +34,11 @@ public class Auto3 extends CommandGroup {
     	this.angle1=angle1;
     	this.angle2=angle2;
     	
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
+    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));
     	addParallel(new UnlockGearCommand());
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance2));
+    	//addSequential(new DriveBackwardDistanceWithEncoderCommand(distance2));
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance2));
     	
     }
 }

@@ -36,11 +36,8 @@ public class Auto5 extends CommandGroup {
     	
     	addParallel(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward and unlocks gear at the same time.
     	addSequential(new UnlockGearCommand());
-    	
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance2));//move forward
-    	
+    	addSequential(new DriveBackwardDistanceWithEncoderCommand(distance2));//move backward
     	addSequential(new TurnToAngleGyroCommand(angle1));//Turn 90 degrees
-    	
     	addSequential(new DriveNewDistanceWithEncoderCommand(distance3));//move forward
     	
     }

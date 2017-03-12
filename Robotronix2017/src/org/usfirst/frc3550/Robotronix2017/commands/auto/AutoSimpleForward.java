@@ -5,13 +5,13 @@ import org.usfirst.frc3550.Robotronix2017.commands.*;
 /**
  *
  */
-public class Auto1 extends CommandGroup {
+public class AutoSimpleForward extends CommandGroup {
 	private double distance1;
 	private double distance2;
 	private double distance3;
 	private double angle1;
 	private double angle2;
-    public Auto1(double distance1) {
+    public AutoSimpleForward(double distance1) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -34,7 +34,8 @@ public class Auto1 extends CommandGroup {
     	this.angle1=angle1;
     	this.angle2=angle2;
     	
-    	addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
+    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));//moves forward |237cm?
     	
     	
     }
