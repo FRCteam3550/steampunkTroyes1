@@ -89,6 +89,8 @@ public class RobotMap {
         deplacementRobotDrive41 = new RobotDrive(deplacementleftFrontMotor, deplacementleftRearMotor,
               deplacementrightFrontMotor, deplacementrightRearMotor);
         
+        //deplacementRobotDrive41 = new RobotDrive(deplacementleftRearMotor,deplacementrightRearMotor);
+        
         moteurGrimpeur = new VictorSP(2);
         LiveWindow.addActuator("Grimper", "moteurGrimper", moteurGrimpeur);
         

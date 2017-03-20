@@ -57,7 +57,7 @@ public class SimpleDistanceWithEncoderCommand extends Command {
     	SmartDashboard.putNumber("EncoderTargetPosition", S_encoderSetpoint);
     	//gyroPID.reset();
     	//encoderPID.setSetpoint(S_encoderSetpoint);
-    	setTimeout(10);
+    	setTimeout(2.4);
     	
     }
 
@@ -82,12 +82,13 @@ public class SimpleDistanceWithEncoderCommand extends Command {
     	 }
     	 else if(S_error > S_encoderSetpoint*0.2) {
     		 SmartDashboard.getNumber("EncoderValue*0.2 ", S_encoderSetpoint*0.2);// to delete after tests
-    		 Robot.deplacement.drive(driveForwardSpeed, 0);
-    		// Robot.deplacement.driveTank(driveForwardSpeed, (1+0.08)*(driveForwardSpeed));
+    		 //Robot.deplacement.drive(driveForwardSpeed, 0);
+    		Robot.deplacement.driveTank(driveForwardSpeed, (1+0.1)*(driveForwardSpeed));
     		 SmartDashboard.putString("ForwardDriveInsideUpperBound2 ","yes");// to delete after tests
     	 } else {
-    		// Robot.deplacement.driveTank(driveForwardSpeed*0.5, ((1+0.08)*(driveForwardSpeed)*0.5));
-    		 Robot.deplacement.driveTank(driveForwardSpeed*0.4, -0.47);
+    		Robot.deplacement.driveTank(driveForwardSpeed*0.5, ((1+0.1)*(driveForwardSpeed)*0.5));
+    		 //Robot.deplacement.driveTank(driveForwardSpeed*0.4,-3);
+    		 //SmartDashboard.putNumber("gyroAutonomous", Ro)
     		 SmartDashboard.putString("ForwardDriveInsideLowerBound2 ","yes");// 
     	 }	 
 	}

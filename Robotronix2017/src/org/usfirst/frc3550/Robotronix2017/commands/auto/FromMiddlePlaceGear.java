@@ -5,13 +5,13 @@ import org.usfirst.frc3550.Robotronix2017.commands.*;
 /**
  *
  */
-public class AutoSimpleForward extends CommandGroup {
+public class FromMiddlePlaceGear extends CommandGroup {
 	private double distance1;
 	private double distance2;
 	private double distance3;
 	private double angle1;
 	private double angle2;
-    public AutoSimpleForward(double distance1) {
+    public FromMiddlePlaceGear(double distance1,double distance2) {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -34,9 +34,23 @@ public class AutoSimpleForward extends CommandGroup {
     	this.angle1=angle1;
     	this.angle2=angle2;
     	
-    	//addSequential(new DriveNewDistanceWithEncoderCommand(distance1));//moves forward |237cm?
-    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));//moves forward |237cm?
     	
+    	addSequential(new LockGearAutoCommand());
+    	addParallel(new ArmUpAutoCommand());
+    	addSequential(new RiseGearCollectorAutoCommand());
+    	//addParallel(new LockGearAutoCommand());
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));
+    	addSequential(new UnlockGearAutoCommand());
+    	//addSequential(new LockGearCommand());
+    	//addSequential(new RiseGearCollectorCommand());
+    	//addSequential(new UnlockGearCommand());
+    	///addParallel(new ArmUpCommand());
+    	//addSequential(new SimpleDistanceWithEncoderCommand(distance1));
+    	///addSequential(new RiseGearCollectorCommand());
+    	//addSequential(new UnlockGearCommand());
+    	addSequential(new RestGearCollectorAutoCommand());
+    	//addSequential(new DriveBackwardDistanceWithEncoderCommand(distance2));
     	
+
     }
 }

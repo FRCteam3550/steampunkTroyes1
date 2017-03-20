@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc3550.Robotronix2017.commands.auto.*;
-//import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.CameraServer;
 
 import org.usfirst.frc3550.Robotronix2017.commands.*;
 import org.usfirst.frc3550.Robotronix2017.subsystems.*;
@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot {
         grimpeur = new ClimberSubsystem();
         //leds = new LedsSubsystem();
         compresseur = new Compressor(1);
-       // CameraServer.getInstance().startAutomaticCapture();
+       CameraServer.getInstance().startAutomaticCapture();
         //deplacement.clearLeftRearEncoder();
         
 
@@ -77,17 +77,19 @@ public class Robot extends IterativeRobot {
         
         
         autoSelecteur = new SendableChooser<>();
-        autoSelecteur.addObject("->StraightTurn", new ForwardWithEncoderTurnCommand(2, 90));
+        autoSelecteur.addObject("->PlaceGearFromRight", new ForwardWithEncoderTurnCommand(145, -35, 155));
+        autoSelecteur.addObject("->PlaceGearFromRightN", new ForwardWithEncoderTurnCommand(145, 35, 155));
         autoSelecteur.addObject("->Turn", new TurnToAngleGyroCommand(90));
-        autoSelecteur.addObject("->SimpleForward", new AutoSimpleForward(247));
+        autoSelecteur.addObject("->Breach Base Line", new BreachBaseLine(148));
+        autoSelecteur.addObject("->EncoGyroBreach Base Line", new ForwardEncoderGyroTroyCommand(148,0));
         //SimpleBackward: @ negative distance in cm to travel in backward mode
-        autoSelecteur.addObject("->SimpleBackward", new DriveBackwardDistanceWithEncoderCommand(-200));//DriveNewDistanceWitehEncoderCommand(50));
+        autoSelecteur.addObject("->SimpleBackward", new DriveBackwardDistanceWithEncoderCommand(-150));//DriveNewDistanceWitehEncoderCommand(50));
         //Uturn: @ positive distance in cm to travel @ angle to turn in degrees
         autoSelecteur.addObject("->Uturn", new UTurnCommand(100,45,100));
         autoSelecteur.addObject("Auto2", new Auto2(100, 90, 100, 90, 100));
         autoSelecteur.addObject("Auto3", new Auto3(100,50));
         //Auto4 : @inputs angle1 to turn, distance1(positive value) distance2(negative value)
-        autoSelecteur.addObject("Auto4", new Auto4(90,100,-50));
+        autoSelecteur.addObject("FromMiddlePlaceGear", new FromMiddlePlaceGear(147,-80));
         /*autoSelecteur.addObject("->Composer", new RbtxAutoCompoundCommand());
         //DriveEncoder : @inputs distance to drive in ft and speed
         //autoSelecteur.addObject("->Going Forward", new RbtxDriveToDistanceWithEncoders(-13.0, 0.6));
@@ -124,6 +126,9 @@ public class Robot extends IterativeRobot {
     	
    	   // SmartDashboard.putString("allo", "allo");
     	autonomousCommand = (Command) autoSelecteur.getSelected();
+    	ramasseur.pushGearUp();
+    	ramasseur.pushArmUp();
+    	ramasseur.coverGear();
     	deplacement.clearLeftRearEncoder();
    	    deplacement.clearGyroAngle();
     	//System.out.println(".");
@@ -139,6 +144,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	 SmartDashboard.putNumber("ValeurENcodeurAutonomousPeriodic",deplacement.getPositionLeftRearMotor());
+    	 SmartDashboard.putNumber("AutonomousGyroValue:",deplacement.getGyroAngle());
     	// SmartDashboard.putString("passe2","passe2");
         Scheduler.getInstance().run();
     }
@@ -150,6 +156,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
     	 deplacement.clearLeftRearEncoder();
     	 deplacement.clearGyroAngle();
+    	 ramasseur.coverGear();
         if (autonomousCommand != null) autonomousCommand.cancel();
         //deplacement.clearLeftRearEncoder();
    	   // deplacement.clearGyroAngle();

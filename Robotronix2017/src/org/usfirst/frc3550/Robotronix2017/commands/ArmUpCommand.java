@@ -12,10 +12,12 @@ public class ArmUpCommand extends Command {
     public ArmUpCommand() {
         // Use requires() here to declare subsystem dependencies
          requires(Robot.ramasseur);
+         
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//setTimeout(2);
     }
 
     // Called repeatedly when this Command is scheduled to run

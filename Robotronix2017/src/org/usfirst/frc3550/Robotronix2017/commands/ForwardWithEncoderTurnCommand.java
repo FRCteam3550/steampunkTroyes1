@@ -6,8 +6,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class ForwardWithEncoderTurnCommand extends CommandGroup {
+	
+	private double distance1;
+	private double distance2;
+	private double angle1;
 
-    public ForwardWithEncoderTurnCommand(double distance, double Angle) {
+    public ForwardWithEncoderTurnCommand(double distance1,double angle1,double distance2 ) {
+    	this.distance1=distance1;
+    	this.distance2=distance2;
+    	this.angle1=angle1;
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -25,7 +33,12 @@ public class ForwardWithEncoderTurnCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-       addSequential(new DriveNewDistanceWithEncoderCommand(distance));
-       addSequential(new TurnToAngleGyroCommand(Angle));
+    	addParallel(new ArmUpCommand());
+    	addParallel(new LowerGearCollectorCommand());
+    	addParallel(new LockGearCommand());
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));
+    	addSequential(new TurnToAngleGyroCommand(angle1));
+    	addSequential(new SimpleDistanceWithEncoderCommand(distance2));
+    	addSequential(new UnlockGearCommand());
     }
 }
