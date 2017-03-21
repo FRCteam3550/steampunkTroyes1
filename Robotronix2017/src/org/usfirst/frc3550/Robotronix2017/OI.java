@@ -126,6 +126,9 @@ public class OI {
         Button ArmDown = new JoystickButton(coPilote, 3);
         ArmDown.whenPressed(new ArmDownCommand()); //to inverse 
         
+        Button PickUpGear = new JoystickButton(coPilote, 4);
+        PickUpGear.whenPressed(new NewPickUpGearCommand());
+        
         Button RejectGear = new JoystickButton(coPilote, 2);
         //button4.whenPressed(new RejeterEngrenageCommand());
         RejectGear.whileHeld(new RejectGearCommand());

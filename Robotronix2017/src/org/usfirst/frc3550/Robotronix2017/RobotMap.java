@@ -15,6 +15,7 @@ package org.usfirst.frc3550.Robotronix2017;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -45,6 +46,7 @@ public class RobotMap {
     public static Solenoid solenoidLedGauche;
     public static Solenoid solenoidLedDroite;
     public static VictorSP moteurGrimpeur;
+    public static DigitalInput GearDetector;
    // public static VictorSP motorTest;
     public static AnalogGyro gyro;
      
@@ -93,6 +95,9 @@ public class RobotMap {
         
         moteurGrimpeur = new VictorSP(2);
         LiveWindow.addActuator("Grimper", "moteurGrimper", moteurGrimpeur);
+        
+        GearDetector = new DigitalInput(0);
+        
         
         
        /// motorTest = new VictorSP(0);

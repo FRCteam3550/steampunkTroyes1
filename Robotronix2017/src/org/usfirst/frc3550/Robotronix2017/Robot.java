@@ -171,6 +171,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("AxisX",oi.getfilteredJPiloteXAxis());
         SmartDashboard.putNumber("EncoderPosition",deplacement.getPositionLeftRearMotor());
         SmartDashboard.putNumber("GyroAngle",deplacement.getGyroAngle());
+        SmartDashboard.putBoolean("GearDetection",ramasseur.detectGear());
     }
 
     /**
