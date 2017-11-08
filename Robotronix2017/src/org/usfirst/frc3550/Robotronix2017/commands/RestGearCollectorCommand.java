@@ -22,7 +22,7 @@ public class RestGearCollectorCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.ramasseur.stopCollecting();
-    	Robot.ramasseur.pushGearDown();
+    	Robot.ramasseur.pushGearUp();
     	Robot.ramasseur.pushArmUp();// desabled to test the off position
     	Robot.ramasseur.coverGear();
     	

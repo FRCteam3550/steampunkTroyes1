@@ -97,6 +97,7 @@ public class TurnToAngleGyroCommand extends Command {
     protected void execute() {
     	SmartDashboard.putNumber("gyroAutoAngle", rotateValue);// to delete after tests
     	Robot.deplacement.drive(0, rotateValue);// to delete after tests
+    
     }
 
     // Make this return true when this Command no longer needs to run execute()

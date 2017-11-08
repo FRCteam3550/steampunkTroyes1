@@ -9,11 +9,13 @@ public class ForwardWithEncoderTurnCommand extends CommandGroup {
 	
 	private double distance1;
 	private double distance2;
+	private double distance3;
 	private double angle1;
 
-    public ForwardWithEncoderTurnCommand(double distance1,double angle1,double distance2 ) {
+    public ForwardWithEncoderTurnCommand(double distance1,double angle1,double distance2,double distance3 ) {
     	this.distance1=distance1;
     	this.distance2=distance2;
+    	this.distance2=distance3;
     	this.angle1=angle1;
     	
         // Add Commands here:
@@ -33,12 +35,13 @@ public class ForwardWithEncoderTurnCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addParallel(new ArmUpCommand());
-    	addParallel(new LowerGearCollectorCommand());
-    	addParallel(new LockGearCommand());
-    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));
+    	//addParallel(new ArmUpCommand());
+    	//addParallel(new LowerGearCollectorCommand());
+    	//addParallel(new LockGearCommand());
+    	addSequential(new ForwardEncoderGyroTroyCommand(distance1,0));
     	addSequential(new TurnToAngleGyroCommand(angle1));
-    	addSequential(new SimpleDistanceWithEncoderCommand(distance2));
+    	addSequential(new ForwardEncoderGyroTroyCommand(distance2,0));
     	addSequential(new UnlockGearCommand());
+    	addSequential(new DriveBackwardDistanceWithEncoderCommand(distance3));
     }
 }

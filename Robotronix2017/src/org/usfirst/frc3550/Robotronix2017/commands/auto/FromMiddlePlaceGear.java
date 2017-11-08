@@ -35,11 +35,11 @@ public class FromMiddlePlaceGear extends CommandGroup {
     	this.angle2=angle2;
     	
     	
-    	addSequential(new LockGearAutoCommand());
-    	addParallel(new ArmUpAutoCommand());
-    	addSequential(new RiseGearCollectorAutoCommand());
-    	//addParallel(new LockGearAutoCommand());
-    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));
+    	//addSequential(new LockGearAutoCommand());
+    	
+    	//addSequential(new RiseGearCollectorAutoCommand());
+    	
+    	addSequential(new ForwardEncoderGyroTroyCommand(distance1,0));
     	addSequential(new UnlockGearAutoCommand());
     	//addSequential(new LockGearCommand());
     	//addSequential(new RiseGearCollectorCommand());
@@ -48,8 +48,8 @@ public class FromMiddlePlaceGear extends CommandGroup {
     	//addSequential(new SimpleDistanceWithEncoderCommand(distance1));
     	///addSequential(new RiseGearCollectorCommand());
     	//addSequential(new UnlockGearCommand());
-    	addSequential(new RestGearCollectorAutoCommand());
-    	//addSequential(new DriveBackwardDistanceWithEncoderCommand(distance2));
+    	//addSequential(new RestGearCollectorAutoCommand());
+    	addSequential(new DriveBackwardDistanceWithEncoderCommand(distance2));
     	
 
     }

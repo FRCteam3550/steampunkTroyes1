@@ -65,10 +65,10 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	 error = encoderSetpoint - Robot.deplacement.getPositionLeftRearMotor();
-    	 SmartDashboard.putNumber("Encoder_actualPosition", Robot.deplacement.getPositionLeftRearMotor());// to delete after tests
-    	 SmartDashboard.putNumber("Error", error);// to delete after tests
-    	 SmartDashboard.putNumber("encoderSetpoint", encoderSetpoint);// to delete after tests
-    	 SmartDashboard.putString("Inside ","autonomous");// to delete after tests
+    	// SmartDashboard.putNumber("Encoder_actualPosition", Robot.deplacement.getPositionLeftRearMotor());// to delete after tests
+    	// SmartDashboard.putNumber("Error", error);// to delete after tests
+    	// SmartDashboard.putNumber("encoderSetpoint", encoderSetpoint);// to delete after tests
+    	// SmartDashboard.putString("Inside ","autonomous");// to delete after tests
     	 /*
 		if (driveForwardSpeed *Kp_encoder * error >= driveForwardSpeed) {
 			Robot.deplacement.driveTank(driveForwardSpeed, ((1+0.1)*(driveForwardSpeed)));
@@ -104,7 +104,7 @@ public class DriveNewDistanceWithEncoderCommand extends Command {
     	//encoderPID.disable();
     	error =  Robot.deplacement.getPositionLeftRearMotor();
     	Robot.deplacement.getRightRearMotor().setPosition(0);
-         SmartDashboard.putNumber("Encoder_AfterDistancePID", Robot.deplacement.getPositionLeftRearMotor());
+        // SmartDashboard.putNumber("Encoder_AfterDistancePID", Robot.deplacement.getPositionLeftRearMotor());
     	//this.encoderSetpoint = 0;
     }
 

@@ -37,7 +37,7 @@ public class BreachBaseLine extends CommandGroup {
     	addParallel(new ArmUpCommand());
     	addParallel(new RiseGearCollectorCommand());
     	addParallel(new LockGearCommand());
-    	addSequential(new SimpleDistanceWithEncoderCommand(distance1));//moves forward |237cm?
+    	addSequential(new ForwardEncoderGyroTroyCommand(distance1,0));//moves forward |237cm?
     	
     	
     }
